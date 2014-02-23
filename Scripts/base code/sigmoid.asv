@@ -3,7 +3,7 @@ function g = sigmoid(z)
 % Notice that z can be a scalar, a vector or a matrix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   YOUR CODE HERE %%%%%%%%%%%%%%%%%%%%
+%   YOUR CODE HERE TO DO              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
