@@ -99,7 +99,7 @@ N = 9;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create training sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['subtrain' num2str(i) '=train' num2str(i) '(1:round(size(train' num2str(i) ',1)*5/6),:);']);
+    eval(['subtrain' num2str(i) '=train' num2str(i) '(1:round(size(train' num2str(i) ',1)*5/600),:);']);
 end
 
 a = '';
@@ -134,12 +134,13 @@ train_label = eval([a]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Convert to double and normalize training data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 train_data = double(train_data);
-train_data = normc(train_data);
+% train_data = normc(train_data);
+train_data = train_data/255;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create validation sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['validation' num2str(i) '=train' num2str(i) '(1:round(size(train' num2str(i) ',1)*1/6),:);']);
+    eval(['validation' num2str(i) '=train' num2str(i) '(round(size(train' num2str(i) ',1)*5/600) + 1,:);']);
 end
 
 a = '';
@@ -174,12 +175,13 @@ validation_label = eval([a]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Convert to double and normalize validation data %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 validation_data = double(validation_data);
-validation_data = normc(validation_data);
+% validation_data = normc(validation_data);
+validation_data = validation_data/255;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create test sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['subtest' num2str(i) '=test' num2str(i) '(1:round(size(test' num2str(i) ',1)),:);']);
+    eval(['subtest' num2str(i) '=test' num2str(i) '(1:round(size(test' num2str(i) ',1)*1/100),:);']);
 end
 
 a = '';
@@ -214,7 +216,7 @@ test_label = eval([a]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Convert to double and normalize test data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 test_data = double(test_data);
-test_data = normc(test_data);
-
+% test_data = normc(test_data);
+test_data = test_data/255;
 end
 

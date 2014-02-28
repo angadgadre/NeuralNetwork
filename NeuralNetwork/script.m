@@ -31,7 +31,8 @@ initialWeights = [initial_w1(:); initial_w2(:)];
 options = optimset('MaxIter', 50);
 
 % set the regularization hyper-parameter
-lambda = 0;
+lambda = 0.85;
+%{
 tries = 20;
 lacc = zeros(tries,2);
 
@@ -57,12 +58,12 @@ for i = 1:tries
     
     lacc(i,1) = lambda;
     lacc(i,2) = mean(double(predicted_label == train_label)) * 100;
-    lambda = lambda + 50*i;
+    lambda = lambda + 0.05;
 end
 
 [~, index] = max(lacc(:,2));
 lambda = lacc(index,1);
-
+%}
 % define the objective function
 objFunction = @(params) nnObjFunction(params, n_input, n_hidden, ...
                        n_class, train_data, train_label, lambda);
