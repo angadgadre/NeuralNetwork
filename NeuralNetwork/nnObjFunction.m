@@ -102,7 +102,7 @@ for N=1:size(training_data,1)
         for k = 1 : n_class
              sum_dk_w2kj = sum_dk_w2kj + delta(k) * w2(k,j);
         end
-        grad_w1_n(j) = (1 - z(j)) * z(j) * sum_dk_w2kj * training_data2(N);
+        grad_w1_n(j,:) = (1 - z(j)) * z(j) * sum_dk_w2kj * training_data2(N,:);
     end
     
     sum_w2 = sum_w2 + grad_w2_n;
