@@ -31,7 +31,7 @@ initialWeights = [initial_w1(:); initial_w2(:)];
 options = optimset('MaxIter', 50);
 
 % set the regularization hyper-parameter
-lambda = 0.85;
+lambda = 0.35;
 %{
 tries = 20;
 lacc = zeros(tries,2);
@@ -98,12 +98,26 @@ fprintf('\nTesting Set Accuracy: %f\n', ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % **************K-Nearest Neighbors***************************
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-k = 1;
+% k = 1;
+kacc = zeros(round(sqrt(size(train_data, 1))),2);
+for k=1:round(sqrt(size(train_data, 1)))
+%   Test KNN with validation data
+predicted_label = knnPredict(k, train_data, train_label, validation_data);
+fprintf('\nk:%f \t Validation Set Accuracy: %f\n', ...
+         k, mean(double(predicted_label == validation_label)) * 100);
+     
+    kacc(k,1) = k;
+    kacc(k,2) = mean(double(predicted_label == validation_label)) * 100;
+end
+
+[~, index] = max(kacc(:,2));
+k = kacc(index,1);
+%{
 %   Test KNN with validation data
 predicted_label = knnPredict(k, train_data, train_label, validation_data);
 fprintf('\nValidation Set Accuracy: %f\n', ...
          mean(double(predicted_label == validation_label)) * 100);
-
+%}     
 %   Test KNN with test data
 predicted_label = knnPredict(k, train_data, train_label, test_data);
 fprintf('\nTesting Set Accuracy: %f\n', ...
