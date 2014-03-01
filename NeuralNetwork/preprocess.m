@@ -140,7 +140,7 @@ train_data = train_data/255;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create validation sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['validation' num2str(i) '=train' num2str(i) '(round(size(train' num2str(i) ',1)*5/6) + 1,:);']);
+    eval(['validation' num2str(i) '=train' num2str(i) '(round(size(train' num2str(i) ',1)*5/6) + 1:end,:);']);
 end
 
 a = '';
