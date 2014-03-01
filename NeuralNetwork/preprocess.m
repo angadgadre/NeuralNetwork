@@ -99,7 +99,7 @@ N = 9;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create training sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['subtrain' num2str(i) '=train' num2str(i) '(1:round(size(train' num2str(i) ',1)*5/600),:);']);
+    eval(['subtrain' num2str(i) '=train' num2str(i) '(1:round(size(train' num2str(i) ',1)*5/6),:);']);
 end
 
 a = '';
@@ -140,7 +140,7 @@ train_data = train_data/255;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create validation sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['validation' num2str(i) '=train' num2str(i) '(round(size(train' num2str(i) ',1)*5/600) + 1,:);']);
+    eval(['validation' num2str(i) '=train' num2str(i) '(round(size(train' num2str(i) ',1)*5/6) + 1,:);']);
 end
 
 a = '';
@@ -181,7 +181,7 @@ validation_data = validation_data/255;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Create test sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i=0:N
-    eval(['subtest' num2str(i) '=test' num2str(i) '(1:round(size(test' num2str(i) ',1)*1/100),:);']);
+    eval(['subtest' num2str(i) '=test' num2str(i) '(1:round(size(test' num2str(i) ',1)*1/1),:);']);
 end
 
 a = '';
